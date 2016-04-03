@@ -8,11 +8,11 @@ function everything(){
         console.log("ERROR: "+e);
     }
     
-    $("button").click(function(){
+    $("#buttonToClick").click(function(){
        clicks+=1;
        base95.add("clicks",clicks);
        console.log(clicks)
-       $("p").text("This button has been clicked "+clicks+"times");
+       $("#paragraph").text("This button has been clicked "+clicks+"times");
     });
 }
 
