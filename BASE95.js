@@ -31,7 +31,7 @@ function b95(clientID, documentID){
             (iterations[path.length-1])[name] = value;
             object = getData();
             for(var i = (iterations.length-1); i > 0; i--){
-                (iterations[i-1])[path[i-1]] = iterations[i]
+                (iterations[i-1])[path[i-1]] = iterations[i];
                 console.log(iterations[i]);
             }
             object = iterations[0];
@@ -72,7 +72,7 @@ function b95(clientID, documentID){
             }
             object = getData();
             for(var i = (iterations.length-1); i > 0; i--){
-                (iterations[i-1])[path[i-1]] = iterations[i]
+                (iterations[i-1])[path[i-1]] = iterations[i];
                 console.log(iterations[i]);
             }
             object = iterations[0];
