@@ -42,3 +42,5 @@ function update(){
     pastVal = value;
     setTimeout(update, 200);
 }
+
+update();
