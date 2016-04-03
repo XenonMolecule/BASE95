@@ -5,7 +5,7 @@ $("#clientID").keydown(function(){
        $("#makeWorkspace").attr("disabled",false);
 });
 
-var realtimeUtils = new utils.RealtimeUtils({ clientId: ($("#clientID").val())});
+var realtimeUtils;
 
 function authorize() {
         // Attempt to authorize
@@ -31,7 +31,7 @@ function start() {
        realtimeUtils.createRealtimeFile('New BASE95 File', function(createResponse) {
               window.history.pushState(null, null, '?id=' + createResponse.id);
               realtimeUtils.load(createResponse.id, onFileLoaded, onFileInitialize);
-              alert("Your file id is: "+createResponse.id+".  You will be using it in the next step!")
+              alert("Your file id is: "+createResponse.id+".  You will be using it in the next step!  You may copy it above from the URL")
         });
 }
 
@@ -42,5 +42,11 @@ function onFileInitialize(model) {
 }
 
 function precedeAuthorize(){
+        var clientID = ($("#clientID").val())
+        realtimeUtils = new utils.RealtimeUtils({ clientId: clientID});
        authorize();
+}
+
+function onFileLoaded(doc) {
+    console.log("loaded");
 }
