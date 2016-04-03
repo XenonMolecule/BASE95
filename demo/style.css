@@ -4,9 +4,9 @@
     height:50px;
     background:Red;
     font-family: 'BTTF';
-    margin-left:36%;
-    margin-right:36%;
-    margin-top:345px;
+    margin-left: 0px;
+    margin-right:0px;
+    position: absolute;
 }
 
 p{

@@ -149,3 +149,9 @@ function callGetData(){
     getData();
     setTimeout(callGetData,200);
 }
+
+$(document).resize(function(){
+    $("#buttonToClick").css("margin-left",(window.innerWidth/2)-70);
+});
+
+$("#buttonToClick").css("margin-left",(window.innerWidth/2)-70);
