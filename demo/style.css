@@ -29,5 +29,6 @@ body:{
 }
 
 #auth_button{
-    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
 }

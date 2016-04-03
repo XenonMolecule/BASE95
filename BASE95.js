@@ -121,6 +121,7 @@ function authorize(b95) {
             button.addEventListener('click', function () {
             (b95.realtimeUtils).authorize(function(response){
                 start(b95);
+                document.location.reload();
             }, true);
             });
         } else {
