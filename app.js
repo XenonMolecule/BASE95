@@ -50,3 +50,10 @@ function precedeAuthorize(){
 function onFileLoaded(doc) {
     console.log("loaded");
 }
+
+$("#cssmenu li").on("click",function(){
+    var id = $(this).attr("tabName");
+   $('html, body').animate({
+        scrollTop: $(id).offset().top
+    }, 1000); 
+});
