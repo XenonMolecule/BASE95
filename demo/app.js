@@ -36,6 +36,7 @@ $("#BASE95Data").change(function(){
 
 function update(){
     clicks = base95.read("clicks/");
+    $("#paragraph").text("This button has been clicked "+clicks+" times");
     setTimeout(update, 200);
 }
 
