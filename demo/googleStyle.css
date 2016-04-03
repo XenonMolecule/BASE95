@@ -1,0 +1,44 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto);
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+main {
+  width: 80%;
+  margin: 0 auto;
+}
+
+textarea {
+  width: calc(50% - 8px);
+  height: 100px;
+}
+
+#json_textarea {
+  width: 100%;
+}
+
+a {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+p {
+  display: block;
+}
+
+#auth_button {
+  display: none;
+}
+
+#auth_button.visible, p {
+  display: block;
+}
+
+@media (max-width: 600px) {
+  textarea {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}

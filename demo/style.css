@@ -23,3 +23,11 @@ p{
     text-align: center;
     margin-top:200px;
 }
+
+body:{
+    background-color:#7FFFD4;
+}
+
+#auth_button{
+    text-align: center;
+}
