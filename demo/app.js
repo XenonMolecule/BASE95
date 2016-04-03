@@ -4,6 +4,7 @@ function everything(){
     var clicks;
     try {
         clicks = base95.read("clicks/");
+        $("#paragraph").text("This button has been clicked "+clicks+" times");
     } catch(e){
         console.log("ERROR: "+e);
     }
@@ -12,7 +13,7 @@ function everything(){
        clicks+=1;
        base95.add("clicks/",clicks);
        console.log(clicks)
-       $("#paragraph").text("This button has been clicked "+clicks+"times");
+       $("#paragraph").text("This button has been clicked "+clicks+" times");
     });
 }
 
