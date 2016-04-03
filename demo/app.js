@@ -18,3 +18,10 @@ function everything(){
 }
 
 setTimeout(everything,5000);
+
+
+$(document).resize(function(){
+    $("#buttonToClick").css("margin-top",(window.innerHeight/2)-150+"px");
+});
+
+$("#buttonToClick").css("margin-top",(window.innerHeight/2)-150+"px");

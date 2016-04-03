@@ -1,14 +1,25 @@
+ a {text-decoration: none;}
+@font-face {
+    font-family: 'main'; /*a name to be used later*/
+    src: url('../resources/silom.ttf'); /*URL to font*/
+}
+
+
 #buttonToClick{
     border-radius: 25%;
     width:200px;
     height:50px;
     background:Red;
     font-family: 'BTTF';
-    margin-left: 0px;
-    margin-right:0px;
-    position: absolute;
+    font-family: main;
 }
 
 p{
     text-align:center;
+    font-family: main;
+}
+
+#button{
+    text-align: center;
+    margin-top:200px;
 }
