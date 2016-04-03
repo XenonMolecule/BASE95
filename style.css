@@ -55,4 +55,10 @@ strong{
 
 button:{
     visibility: visible;
+    text-align: center;
+}
+
+#auth_button{
+    margin-left: auto;
+    margin-right: auto;
 }

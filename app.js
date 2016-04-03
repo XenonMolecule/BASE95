@@ -57,3 +57,7 @@ $("#cssmenu li").on("click",function(){
         scrollTop: $(id).offset().top
     }, 1000); 
 });
+
+$("#makeWorkspace").on("click",function(){
+   precedeAuthorize(); 
+});
