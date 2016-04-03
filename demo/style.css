@@ -1,0 +1,14 @@
+#buttonToClick{
+    border-radius: 25%;
+    width:200px;
+    height:50px;
+    background:Red;
+    font-family: 'BTTF';
+    margin-left:36%;
+    margin-right:36%;
+    margin-top:345px;
+}
+
+p{
+    text-align:center;
+}
