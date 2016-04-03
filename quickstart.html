@@ -39,7 +39,7 @@
             // Authorization failed because this is the first time the user has used your application,
             // show the authorize button to prompt them to authorize manually.
             var button = document.getElementById('auth_button');
-            button.classList.add('visible');
+            $("#auth_button").prop("hidden",false);
             button.addEventListener('click', function () {
               realtimeUtils.authorize(function(response){
                 start();
