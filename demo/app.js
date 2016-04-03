@@ -19,6 +19,7 @@ function everything(){
        console.log(clicks)
        $("#paragraph").text("This button has been clicked "+clicks+" times");
     });
+    update();
 }
 
 setTimeout(everything,5000);
@@ -39,5 +40,3 @@ function update(){
     $("#paragraph").text("This button has been clicked "+clicks+" times");
     setTimeout(update, 200);
 }
-
-update();
