@@ -35,11 +35,7 @@ $("#BASE95Data").change(function(){
 });
 
 function update(){
-    var value = $("#BASE95Data").val();
-    if (value!=pastVal){
-        clicks = base95.read("clicks/");
-    }
-    pastVal = value;
+    clicks = base95.read("clicks/");
     setTimeout(update, 200);
 }
 
