@@ -28,7 +28,7 @@
         alert('Invalid Client ID - did you forget to insert your application Client ID?');
       }
       // Create a new instance of the realtime utility with your client ID.
-      var realtimeUtils = new utils.RealtimeUtils({ clientId: clientId });
+      var realtimeUtils = new utils.RealtimeUtils({ clientId: clientId});
 
       authorize();
 
@@ -58,6 +58,7 @@
         if (id) {
           // Load the document id from the URL
           realtimeUtils.load(id.replace('/', ''), onFileLoaded, onFileInitialize);
+          
         } else {
           // Create a new document, add it to the URL
           realtimeUtils.createRealtimeFile('New Quickstart File', function(createResponse) {
@@ -91,5 +92,6 @@
         gapi.drive.realtime.databinding.bindString(collaborativeString, textArea2);
       }
     </script>
+    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
   </body>
 </html>
