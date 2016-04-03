@@ -84,6 +84,7 @@ function b95(clientID, documentID){
                 delete object[name];
             }
         }
+    }
     this.read = function(path){
         var object = getData();
         if(path!=null){
