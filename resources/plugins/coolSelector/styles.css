@@ -29,12 +29,12 @@
 }
 #cssmenu {
   width: auto;
-  border: 3px solid #f5137d;
+  border: 3px solid #00ff00;
   border-radius: 3px;
   font-family: 'Oswald', sans-serif;
   line-height: 1;
   background: #f7f7f7;
-  box-shadow: 1px 1px 0 #df7002, 2px 2px 0 #df7002, 3px 3px 3px rgba(0, 0, 0, 0.35);
+  box-shadow: 1px 1px 0 #00ff00, 2px 2px 0 #00ff00, 3px 3px 3px rgba(0, 0, 0, 0.35);
 }
 #cssmenu > ul {
   background: url('images/bg.png');
@@ -58,7 +58,7 @@
   font-size: 14px;
   text-transform: uppercase;
   text-decoration: none;
-  color: #f5137d;
+  color: #00ff00;
   -webkit-transition: all .2s ease;
   -moz-transition: all .2s ease;
   -ms-transition: all .2s ease;
@@ -77,7 +77,7 @@
   height: 0;
   width: 0;
   border: 5px solid transparent;
-  border-bottom-color: #f5137d;
+  border-bottom-color: #00ff00;
   -webkit-transition: all 0.25s ease-out;
   -moz-transition: all 0.25s ease-out;
   -ms-transition: all 0.25s ease-out;
@@ -112,7 +112,7 @@
   font-size: 14px;
   text-transform: uppercase;
   text-decoration: none;
-  color: #f5137d;
+  color: #00ff00;
   background: url('images/bg.png');
 }
 #cssmenu.small-screen #menu-button.menu-opened {
@@ -127,8 +127,8 @@
   -webkit-box-sizing: content-box;
   -moz-box-sizing: content-box;
   box-sizing: content-box;
-  border-top: 2px solid #f5137d;
-  border-bottom: 2px solid #f5137d;
+  border-top: 2px solid #00ff00;
+  border-bottom: 2px solid #00ff00;
   width: 18px;
   height: 3px;
 }
@@ -144,7 +144,7 @@
   display: block;
   width: 18px;
   height: 2px;
-  background: #f5137d;
+  background: #00ff00;
 }
 #cssmenu.small-screen #menu-button.menu-opened:before {
   background: #444444;

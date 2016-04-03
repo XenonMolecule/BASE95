@@ -1,97 +1,177 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Google Realtime Quickstart</title>
+    <head>
+        <title>BASE95 Documentation</title>
+        <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+        <!-- Load Styles -->
+        <!--<link href="https://www.gstatic.com/realtime/quickstart-styles.css" rel="stylesheet" type="text/css"/>-->
+    
+        <!-- Load the Realtime JavaScript library -->
+        <script src="https://apis.google.com/js/api.js"></script>
+    
+        <!-- Load the utility library -->
+        <script src="https://www.gstatic.com/realtime/realtime-client-utils.js"></script>
+        <script src="resources/plugins/coolSelector/script.js"></script>
+        <link rel="stylesheet" href="resources/plugins/coolSelector/styles.css">
+        <link rel = "stylesheet" type = "text/css" href = "style.css">
+    </head>
+    <body>
 
-    <!-- Load Styles -->
-    <link href="https://www.gstatic.com/realtime/quickstart-styles.css" rel="stylesheet" type="text/css"/>
-
-    <!-- Load the Realtime JavaScript library -->
-    <script src="https://apis.google.com/js/api.js"></script>
-
-    <!-- Load the utility library -->
-    <script src="https://www.gstatic.com/realtime/realtime-client-utils.js"></script>
-  </head>
-  <body>
-    <main>
-      <h1>Realtime Collaboration Quickstart</h1>
-      <p>Now that your application is running, simply type in either text box and see your changes instantly appear in the other one. Open
-      this same document in a <a onclick="window.open(window.location.href);return false;" target="_blank">new tab</a> to see it work across tabs.</p>
-      <textarea id="text_area_1"></textarea>
-      <textarea id="text_area_2"></textarea>
-      <button id="auth_button">Authorize</button>
-    </main>
-    <script>
-      var clientId = '30133579980-tn3o4580eqpumfj2rk03399i3j8ku8cb.apps.googleusercontent.com';
-
-      if (!/^([0-9])$/.test(clientId[0])) {
-        alert('Invalid Client ID - did you forget to insert your application Client ID?');
-      }
-      // Create a new instance of the realtime utility with your client ID.
-      var realtimeUtils = new utils.RealtimeUtils({ clientId: clientId});
-
-      authorize();
-
-      function authorize() {
-        // Attempt to authorize
-        realtimeUtils.authorize(function(response){
-          if(response.error){
-            // Authorization failed because this is the first time the user has used your application,
-            // show the authorize button to prompt them to authorize manually.
-            var button = document.getElementById('auth_button');
-            button.classList.add('visible');
-            button.addEventListener('click', function () {
-              realtimeUtils.authorize(function(response){
-                start();
-              }, true);
-            });
-          } else {
-              start();
-          }
-        }, false);
-      }
-
-      function start() {
-        // With auth taken care of, load a file, or create one if there
-        // is not an id in the URL.
-        var id = realtimeUtils.getParam('id');
-        if (id) {
-          // Load the document id from the URL
-          realtimeUtils.load(id.replace('/', ''), onFileLoaded, onFileInitialize);
+        <img src="resources/logo.png" align="middle">
+        <hr width="900"  size="10" noshade>
+        <h2>Online database API powered by Google Drive</h2>
+        <div id='cssmenu'>
+        <ul>
+           <li class='active' tabName="#home"><a href='#'>Set up</a></li>
+           <li tabName="#usage"><a href='#'>Demos</a></li>
+           <li tabName="#news"><a href='#'>Usage</a></li>
+        </ul>
+         </div>
+        <h1>Setting up</h1>
+        <hr>
+        <h2>Step 1: Get Google Credentials</h2>
+        <ol id="step1">
+          <li>Use <a href="https://console.developers.google.com/flows/enableapi?apiid=drive">this wizard</a> to create or select a project in the Google Developers Console and automatically turn on the API. Click <strong>Continue</strong>, then <strong>Go to credentials</strong>.</li>
+          <li>At the top of the page, select the <strong>OAuth consent screen</strong> tab. Select an <strong>Email address</strong>, enter a <strong>Product name</strong> if not already set, and click the <strong>Save</strong> button.</li>
+          <li>Select the <strong>Credentials</strong> tab, click the <strong>Create credentials</strong> button and select <strong>OAuth client ID</strong>. Select "Web application"</li>
+          <li>Insert the base url of your project as the authorized JavaScript origin.  Also insert xenonmolecule.github.io, so you can complete step 3</li>
+          <li>Insert where you want oauth to take the user upon authorization into the redirect URIs field</li>
+          <li>Select "Create Client ID"</li>
+          <li>Take note of your newly created client ID, you will need it for the third & fourth step.</li>
+        </ol>
+        <br>
+        <br>
+        <h2>Step 2: Inserting Necessary Files</h2>
+        <p>insert these files into the head of the html</p>
+        <code>
+          &lt;link href=&quot;https://www.gstatic.com/realtime/quickstart-styles.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;/&gt;
+          <br>
+          &lt;script src=&quot;https://apis.google.com/js/api.js&quot;&gt;&lt;/script&gt;
+          <br>
+          &lt;script src=&quot;https://www.gstatic.com/realtime/realtime-client-utils.js&quot;&gt;&lt;/script&gt;
+          <br>
+          &lt;script src=&quot;//code.jquery.com/jquery-1.12.0.min.js&quot;&gt;&lt;/script&gt;
+          <br>
+          &lt;script src=&quot;http://xenonmolecule.github.io/BASE95/BASE95.js&quot;&gt;&lt;/script&gt;
+          <br>
+          &lt;script src=&quot;YOUR-JS-FILE&quot;&gt;&lt;/script&gt;
+        </code>
+        <br>
+        <br>
+        <h2>Step 3: Create BASE95 workspace on google docs</h2>
+        <p>Click on this button to initialize a BASE95 workspace</p>
+        <input type="text" placeholder="CLIENT-ID" id="clientID"></input>
+        <br>
+        <br>
+        <button onclick="precedeAuthorize()" disabled id="makeWorkspace">Make Workspace</button>
+        <h2>Step 4: Initialize a BASE95 Project</h2>
+          <p>In your JS file type the following: <code>var WORKSPACE-NAME = new b95(CLIENT-ID(from step 1),DOCUMENT-ID(from step 3));</code></p>
+          <p>You are now ready to use this powerful api!</p>
           
-        } else {
-          // Create a new document, add it to the URL
-          realtimeUtils.createRealtimeFile('New Quickstart File', function(createResponse) {
-            window.history.pushState(null, null, '?id=' + createResponse.id);
-            realtimeUtils.load(createResponse.id, onFileLoaded, onFileInitialize);
-          });
-        }
-      }
-
-      // The first time a file is opened, it must be initialized with the
-      // document structure. This function will add a collaborative string
-      // to our model at the root.
-      function onFileInitialize(model) {
-        var string = model.createString();
-        string.setText('Welcome to the Quickstart App!');
-        model.getRoot().set('demo_string', string);
-      }
-
-      // After a file has been initialized and loaded, we can access the
-      // document. We will wire up the data model to the UI.
-      function onFileLoaded(doc) {
-        var collaborativeString = doc.getModel().getRoot().get('demo_string');
-        wireTextBoxes(collaborativeString);
-      }
-
-      // Connects the text boxes to the collaborative string
-      function wireTextBoxes(collaborativeString) {
-        var textArea1 = document.getElementById('text_area_1');
-        var textArea2 = document.getElementById('text_area_2');
-        gapi.drive.realtime.databinding.bindString(collaborativeString, textArea1);
-        gapi.drive.realtime.databinding.bindString(collaborativeString, textArea2);
-      }
-    </script>
-    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
-  </body>
+        <h1>Methods</h1>
+        <hr>
+        <div class="method">
+            <p><strong>.add(name,value[,path])</strong></p>
+            <h5>adds a defined value-name pair to a specified location in the document</h5>
+            <table style="width:100%">
+              <tr>
+                <th>Parameter</th>
+                <th>Usage</th>		
+                <th>Type</th>
+              </tr>
+              <tr>
+                <td>name</td>
+                <td>the property name you wish to add</td>		
+                <td>string</td>
+              </tr>
+              <tr>
+                <td>value</td>
+                <td>the value you wish to assign to the property</td>		
+                <td>any</td>
+              </tr>
+              <tr>
+                <td>[path]</td>
+                <td>the path of objects that the code has to search through to find the location of the value you wish to add, seperated by forward slashes(/), and ending in a forward slash, if left blank, value added without parent objects</td>		
+                <td>string</td>
+              </tr>
+            </table>
+            
+            <hr>
+        </div>
+        
+        <div class="method">
+          <p><strong>.change(name,value[,path])</strong></p>
+          <h5>changes the value of an existing property</h5>
+          <table style="width:100%">
+              <tr>
+                <th>Parameter</th>
+                <th>Usage</th>		
+                <th>Type</th>
+              </tr>
+              <tr>
+                <td>name</td>
+                <td>the property name you wish to change</td>		
+                <td>string</td>
+              </tr>
+              <tr>
+                <td>value</td>
+                <td>the value you wish to assign to the property</td>		
+                <td>any</td>
+              </tr>
+              <tr>
+                <td>[path]</td>
+                <td>the path of objects that the code has to search through to find the location of the value you wish to change, seperated by forward slashes(/), and ending in a forward slash, if left blank, value changed without parent objects</td>		
+                <td>string</td>
+              </tr>
+            </table>
+          <hr>
+        </div>
+    
+        <div class="method">
+          <p><strong>.remove(name[,path])</strong></p>
+          <h5>takes property and removes it</h5>
+          <table style="width:100%">
+              <tr>
+                <th>Parameter</th>
+                <th>Usage</th>		
+                <th>Type</th>
+              </tr>
+              <tr>
+                <td>name</td>
+                <td>the property name you wish to remove</td>		
+                <td>string</td>
+              </tr>
+              <tr>
+                <td>[path]</td>
+                <td>the path of objects that the code has to search through to find the location of the value you wish to remove, seperated by forward slashes(/), and ending in a forward slash, if left blank, value changed without parent objects</td>		
+                <td>string</td>
+              </tr>
+            </table>
+            <br>
+            <hr>
+        </div>
+        <br>
+        <div class="method">
+          <p><strong>.read([path])</strong></p>
+          <h5>returns value of the main object </h5>
+          <table style="width:100%">
+              <tr>
+                <th>Parameter</th>
+                <th>Usage</th>		
+                <th>Type</th>
+              </tr>
+              <tr>
+                <td>[path]</td>
+                <td>the path of objects that the code has to search through to find the location of the value you wish to read, seperated by forward slashes(/), and ending in a forward slash, if left blank, value changed without parent objects</td>		
+                <td>string</td>
+              </tr>
+            </table>
+        </div>
+        <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+        <script type = "text/javascript" src = "app.js"></script>
+    </body>
 </html>
+
+<!-- initializing
+<!-- demo
+<!-- plugins
