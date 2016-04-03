@@ -28,6 +28,43 @@ function b95(clientID, documentID){
         }
         if(path!=""&&path!=undefined&&path!=null){
             console.log(iterations);
+            (iterations[path.length-1])[name] = value;
+            object = getData();
+            for(var i = (iterations.length-1); i > 0; i--){
+                (iterations[i-1])[path[i-1]] = iterations[i]
+                console.log(iterations[i]);
+            }
+            object = iterations[0];
+        } else {
+            console.log(path);
+            object[name] = value;
+        }
+        
+        this.value = object;
+        sendData();
+        $("#BASE95Data").trigger("change");
+    }
+    this.change = this.add;
+    this.remove = function(name, path){
+        var value = "";
+        var object = getData();
+        if(path!=null){
+            if(path.includes("/")){
+                path = path.split("/");
+            }
+        } else {
+            path = "";
+        }
+        var iterations = [];
+        iterations.push(object);
+        for(var i = 0; i < path.length; i++){
+            if(path[i]!=""&&path[i]!=undefined&&path!=null){
+                object = object[path[i]];
+                iterations.push(object);
+            }
+        }
+        if(path!=""&&path!=undefined&&path!=null){
+            console.log(iterations);
             if(value!=""){
                 (iterations[path.length-1])[name] = value;
             } else {
@@ -47,15 +84,6 @@ function b95(clientID, documentID){
                 delete object[name];
             }
         }
-        
-        this.value = object;
-        sendData();
-        $("#BASE95Data").trigger("change");
-    }
-    this.change = this.add;
-    this.remove = function(name, path){
-        this.add(name, "",path);
-    }
     this.read = function(path){
         var object = getData();
         if(path!=null){
@@ -149,9 +177,3 @@ function callGetData(){
     getData();
     setTimeout(callGetData,200);
 }
-
-$(document).resize(function(){
-    $("#buttonToClick").css("margin-left",(window.innerWidth/2)-70);
-});
-
-$("#buttonToClick").css("margin-left",(window.innerWidth/2)-70);
