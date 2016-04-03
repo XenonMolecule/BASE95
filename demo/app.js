@@ -35,7 +35,7 @@ $("#BASE95Data").change(function(){
 });
 
 function update(){
-    clicks = base95.read("clicks/");
+    clicks = (JSON.parse($("#BASE95Data").val())).clicks;
     $("#paragraph").text("This button has been clicked "+clicks+" times");
     setTimeout(update, 200);
 }
