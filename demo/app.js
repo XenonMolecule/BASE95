@@ -7,7 +7,8 @@ function everything(){
         $("#paragraph").text("This button has been clicked "+clicks+" times");
     } catch(e){
         console.log("ERROR: "+e);
-        base95.add("clicks",0);
+        clicks = 0;
+        base95.add("clicks",clicks);
     }
     
     $("#buttonToClick").click(function(){
