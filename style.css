@@ -52,3 +52,7 @@ strong{
 #step1{
     margin-left:100px;
 }
+
+button:{
+    visibility: visible;
+}
