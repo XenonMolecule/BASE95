@@ -10,7 +10,7 @@ function everything(){
     
     $("#buttonToClick").click(function(){
        clicks+=1;
-       base95.add("clicks",clicks);
+       base95.add("clicks/",clicks);
        console.log(clicks)
        $("#paragraph").text("This button has been clicked "+clicks+"times");
     });
