@@ -1,9 +1,13 @@
 // JavaScript File
+var bases = [];
+
 function b95(clientID, documentID){
     this.realtimeUtils = new utils.RealtimeUtils({ clientId: clientID});
     this.clientID = clientID;
     this.documentID = documentID;
     authorize(this);
+    bases.push(this);
+    getData();
 }
 
 function authorize(b95) {
@@ -53,53 +57,18 @@ function onFileLoaded(doc) {
     gapi.drive.realtime.databinding.bindString(collaborativeString, textArea);
 }
 
-//ALL RENDERED USELESS BY JSON.parse
-/*function stringToObject(string){
-    if(string==null){
-        string = $("#BASE95Data").val();
-    }
-    var object = {};
-    string = findInnerString(string);
-    var overall = string;
-    
-    var simplified = overall.split(",");
-    
-}
-
-function findInnerString(string){
-    var removal = (string.split("{"));
-    string = "";
-    for(var i = 1; i < removal.length; i++){
-        if(i < removal.length-1){
-            string +=removal[i]+"{";
-        } else {
-            string +=removal[i];
+function getData(){
+    for(var i = 0; i < bases.length; i ++){
+        try {
+            bases[i].value = JSON.parse($("#BASE95Data").val());
+        }catch(e){
+            console.log("ERROR: "+e);
         }
     }
-    removal = string.split("}");
-    string ="";
-    for(var i = 0; i < removal.length-1; i ++){
-        if(i < removal.length-2){
-            string +=removal[i]+"}";
-        } else {
-            string +=removal[i];
-        }
-    }
-    return string;
+    setTimeout(getData,200);
 }
 
-function removeInner(string){
-    //ONLY INPUT A SINGLE OVERALL OBJECT, (can contain objects inside though)
-    var total = string;
-    string = string.split("}");
-    var portionString;
-    for(var i = 0; i < string.length; i ++){
-        portionString+=string[i]
-    };
-    string = portionString;
-    string = string.replace("undefined","");
-    portionString = "";
-    string = string.split("{");
-    return string[0]+"{}";
+function sendData(){
+    var data = JSON.stringify(bases[0].value);
+    $("#BASE95Data").val(data);
 }
-*/
